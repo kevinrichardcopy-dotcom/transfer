@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/PostCard.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+// Astro's built-in pagination: generates /blog/1/, /blog/2/, etc.
+// automatically based on how many posts exist and POSTS_PER_PAGE.
+export async function getStaticPaths({ paginate }) {
+  const allPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+
+  const POSTS_PER_PAGE = 9;
+
+  return paginate(allPosts, { pageSize: POSTS_PER_PAGE });
+}
+
+const { page } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Latest Transfer News — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <style>
+      .page-header {
+        padding: 2.5rem 0 1.5rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        margin: 0 0 0.4rem;
+      }
+
+      .page-header p {
+        color: #6b7280;
+        margin: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0 3rem;
+      }
+
+      .pagination a,
+      .pagination span {
+        padding: 0.55rem 1.1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .pagination a {
+        background: #111827;
+        color: #ffffff;
+      }
+
+      .pagination a:hover {
+        background: #16a34a;
+      }
+
+      .pagination .disabled {
+        background: #f3f4f6;
+        color: #9ca3af;
+        cursor: default;
+      }
+
+      .pagination .page-info {
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: #6b7280;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="page-header">
+        <h1>Latest Transfer News</h1>
+        <p>All the confirmed deals, medicals, and negotiations — in one place.</p>
+      </div>
+
+      {page.data.length > 0 ? (
+        <div class="grid">
+          {page.data.map((post) => (
+            <PostCard
+              id={post.id}
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              heroImage={post.data.heroImage}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <p>No transfer news yet — check back soon.</p>
+        </div>
+      )}
+
+      <div class="pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev}>← Newer</a>
+        ) : (
+          <span class="disabled">← Newer</span>
+        )}
+
+        <span class="page-info">Page {page.currentPage} of {page.lastPage}</span>
+
+        {page.url.next ? (
+          <a href={page.url.next}>Older →</a>
+        ) : (
+          <span class="disabled">Older →</span>
+        )}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

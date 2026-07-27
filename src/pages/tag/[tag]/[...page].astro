@@ -1,0 +1,190 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { slugifyTag } from '../../../utils/slugifyTag';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection('blog');
+
+  // Build a map of slug -> { displayName, posts[] } so every
+  // distinct tag (however it was capitalized/written) gets its
+  // own page, sorted newest first.
+  const tagMap = new Map();
+
+  for (const post of allPosts) {
+    const tags = post.data.tags || [];
+
+    for (const tag of tags) {
+      const slug = slugifyTag(tag);
+
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, { displayName: tag, posts: [] });
+      }
+
+      tagMap.get(slug).posts.push(post);
+    }
+  }
+
+  const POSTS_PER_PAGE = 9;
+  const paths = [];
+
+  for (const [slug, { displayName, posts }] of tagMap.entries()) {
+    const sorted = posts.sort(
+      (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    );
+
+    const pages = paginate(sorted, {
+      pageSize: POSTS_PER_PAGE,
+      params: { tag: slug },
+      props: { displayName },
+    });
+
+    paths.push(...pages);
+  }
+
+  return paths;
+}
+
+const { page, displayName } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${displayName} News — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <style>
+      .page-header {
+        padding: 2.5rem 0 1.5rem;
+      }
+
+      .page-header p.eyebrow {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #16a34a;
+        margin: 0 0 0.4rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        margin: 0 0 0.4rem;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0 3rem;
+      }
+
+      .pagination a,
+      .pagination span {
+        padding: 0.55rem 1.1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .pagination a {
+        background: #111827;
+        color: #ffffff;
+      }
+
+      .pagination a:hover {
+        background: #16a34a;
+      }
+
+      .pagination .disabled {
+        background: #f3f4f6;
+        color: #9ca3af;
+      }
+
+      .pagination .page-info {
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="page-header">
+        <p class="eyebrow">Filtered by club</p>
+        <h1>{displayName} News</h1>
+        <a class="back-link" href="/blog/1/">← All transfer news</a>
+      </div>
+
+      <div class="grid">
+        {page.data.map((post) => (
+          <PostCard
+            id={post.id}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            heroImage={post.data.heroImage}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+
+      <div class="pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev}>← Newer</a>
+        ) : (
+          <span class="disabled">← Newer</span>
+        )}
+
+        <span class="page-info">Page {page.currentPage} of {page.lastPage}</span>
+
+        {page.url.next ? (
+          <a href={page.url.next}>Older →</a>
+        ) : (
+          <span class="disabled">Older →</span>
+        )}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
