@@ -4,6 +4,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import PostCard from '../../components/PostCard.astro';
+import Sidebar from '../../components/Sidebar.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 
 // Astro's built-in pagination: generates /blog/1/, /blog/2/, etc.
@@ -19,6 +20,15 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
+
+// The sidebar's "trending clubs" list is computed from every post,
+// and its "more headlines" list picks posts not already shown on
+// this page, so the two panels never just repeat the main grid.
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const shownIds = new Set(page.data.map((post) => post.id));
+const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice(0, 6);
 ---
 
 <!doctype html>
@@ -47,6 +57,12 @@ const { page } = Astro.props;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
         margin-bottom: 2.5rem;
+      }
+
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       .pagination {
@@ -92,12 +108,6 @@ const { page } = Astro.props;
         color: #6b7280;
       }
 
-      @media (max-width: 900px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
       @media (max-width: 640px) {
         .grid {
           grid-template-columns: 1fr;
@@ -107,45 +117,51 @@ const { page } = Astro.props;
   </head>
   <body>
     <Header />
-    <main>
+    <main class="main-wide">
       <div class="page-header">
         <h1>Latest Transfer News</h1>
         <p>All the confirmed deals, medicals, and negotiations — in one place.</p>
       </div>
 
-      {page.data.length > 0 ? (
-        <div class="grid">
-          {page.data.map((post) => (
-            <PostCard
-              id={post.id}
-              title={post.data.title}
-              description={post.data.description}
-              pubDate={post.data.pubDate}
-              heroImage={post.data.heroImage}
-              tags={post.data.tags}
-            />
-          ))}
+      <div class="page-layout">
+        <div class="main-col">
+          {page.data.length > 0 ? (
+            <div class="grid">
+              {page.data.map((post) => (
+                <PostCard
+                  id={post.id}
+                  title={post.data.title}
+                  description={post.data.description}
+                  pubDate={post.data.pubDate}
+                  heroImage={post.data.heroImage}
+                  tags={post.data.tags}
+                />
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state">
+              <p>No transfer news yet — check back soon.</p>
+            </div>
+          )}
+
+          <div class="pagination">
+            {page.url.prev ? (
+              <a href={page.url.prev}>← Newer</a>
+            ) : (
+              <span class="disabled">← Newer</span>
+            )}
+
+            <span class="page-info">Page {page.currentPage} of {page.lastPage}</span>
+
+            {page.url.next ? (
+              <a href={page.url.next}>Older →</a>
+            ) : (
+              <span class="disabled">Older →</span>
+            )}
+          </div>
         </div>
-      ) : (
-        <div class="empty-state">
-          <p>No transfer news yet — check back soon.</p>
-        </div>
-      )}
 
-      <div class="pagination">
-        {page.url.prev ? (
-          <a href={page.url.prev}>← Newer</a>
-        ) : (
-          <span class="disabled">← Newer</span>
-        )}
-
-        <span class="page-info">Page {page.currentPage} of {page.lastPage}</span>
-
-        {page.url.next ? (
-          <a href={page.url.next}>Older →</a>
-        ) : (
-          <span class="disabled">Older →</span>
-        )}
+        <Sidebar allPosts={allPosts} headlinePosts={sidebarHeadlines} />
       </div>
     </main>
     <Footer />

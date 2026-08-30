@@ -4,6 +4,7 @@ import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import PostCard from '../../../components/PostCard.astro';
+import Sidebar from '../../../components/Sidebar.astro';
 import { slugifyTag } from '../../../utils/slugifyTag';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
 
@@ -51,6 +52,14 @@ export async function getStaticPaths({ paginate }) {
 
 const { page, displayName } = Astro.props;
 const { tag } = Astro.params;
+
+// The sidebar draws on the whole site, not just this tag, so
+// readers have somewhere to go once they finish this club's news.
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const shownIds = new Set(page.data.map((post) => post.id));
+const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice(0, 6);
 ---
 
 <!doctype html>
@@ -134,7 +143,7 @@ const { tag } = Astro.params;
         font-weight: 500;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: 1100px) {
         .grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -149,40 +158,46 @@ const { tag } = Astro.params;
   </head>
   <body>
     <Header />
-    <main>
+    <main class="main-wide">
       <div class="page-header">
         <p class="eyebrow">Filtered by club</p>
         <h1>{displayName} News</h1>
         <a class="back-link" href="/blog/1/">← All transfer news</a>
       </div>
 
-      <div class="grid">
-        {page.data.map((post) => (
-          <PostCard
-            id={post.id}
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            heroImage={post.data.heroImage}
-            tags={post.data.tags}
-          />
-        ))}
-      </div>
+      <div class="page-layout">
+        <div class="main-col">
+          <div class="grid">
+            {page.data.map((post) => (
+              <PostCard
+                id={post.id}
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+                heroImage={post.data.heroImage}
+                tags={post.data.tags}
+              />
+            ))}
+          </div>
 
-      <div class="pagination">
-        {page.url.prev ? (
-          <a href={page.url.prev}>← Newer</a>
-        ) : (
-          <span class="disabled">← Newer</span>
-        )}
+          <div class="pagination">
+            {page.url.prev ? (
+              <a href={page.url.prev}>← Newer</a>
+            ) : (
+              <span class="disabled">← Newer</span>
+            )}
 
-        <span class="page-info">Page {page.currentPage} of {page.lastPage}</span>
+            <span class="page-info">Page {page.currentPage} of {page.lastPage}</span>
 
-        {page.url.next ? (
-          <a href={page.url.next}>Older →</a>
-        ) : (
-          <span class="disabled">Older →</span>
-        )}
+            {page.url.next ? (
+              <a href={page.url.next}>Older →</a>
+            ) : (
+              <span class="disabled">Older →</span>
+            )}
+          </div>
+        </div>
+
+        <Sidebar allPosts={allPosts} headlinePosts={sidebarHeadlines} activeTagSlug={tag} />
       </div>
     </main>
     <Footer />
