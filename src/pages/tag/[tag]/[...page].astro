@@ -68,42 +68,32 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
     <BaseHead title={`${displayName} News — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
     <style>
       .page-header {
-        padding: 2.5rem 0 1.5rem;
-      }
-
-      .page-header p.eyebrow {
-        font-size: 0.8rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: #16a34a;
-        margin: 0 0 0.4rem;
+        padding: 2.75rem 0 1.75rem;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 2rem;
       }
 
       .page-header h1 {
         font-size: 2rem;
-        font-weight: 800;
-        color: #111827;
-        margin: 0 0 0.4rem;
+        margin: 0 0 0.5rem;
       }
 
       .back-link {
         display: inline-block;
-        margin-top: 0.5rem;
         font-size: 0.9rem;
         font-weight: 600;
-        color: #16a34a;
+        color: var(--pitch);
         text-decoration: none;
       }
 
       .back-link:hover {
-        text-decoration: underline;
+        color: var(--pitch-dark);
       }
 
-      .grid {
+      .story-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem 2rem;
         margin-bottom: 2.5rem;
       }
 
@@ -118,39 +108,33 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
       .pagination a,
       .pagination span {
         padding: 0.55rem 1.1rem;
-        border-radius: 8px;
+        border-radius: 3px;
         font-size: 0.9rem;
         font-weight: 600;
         text-decoration: none;
       }
 
       .pagination a {
-        background: #111827;
+        background: var(--navy);
         color: #ffffff;
       }
 
       .pagination a:hover {
-        background: #16a34a;
+        background: var(--pitch);
       }
 
       .pagination .disabled {
-        background: #f3f4f6;
-        color: #9ca3af;
+        background: #ece9e0;
+        color: #a8a496;
       }
 
       .pagination .page-info {
-        color: #6b7280;
+        color: var(--slate);
         font-weight: 500;
       }
 
-      @media (max-width: 1100px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 640px) {
-        .grid {
+      @media (max-width: 700px) {
+        .story-list {
           grid-template-columns: 1fr;
         }
       }
@@ -160,14 +144,13 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
     <Header />
     <main class="main-wide">
       <div class="page-header">
-        <p class="eyebrow">Filtered by club</p>
         <h1>{displayName} News</h1>
-        <a class="back-link" href="/blog/1/">← All transfer news</a>
+        <a class="back-link" href="/blog">← All transfer news</a>
       </div>
 
       <div class="page-layout">
         <div class="main-col">
-          <div class="grid">
+          <div class="story-list">
             {page.data.map((post) => (
               <PostCard
                 id={post.id}

@@ -1,40 +1,55 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+  Design system for Transfer Updates.
+
+  Palette is drawn from live football broadcast graphics rather
+  than generic SaaS defaults: deep navy chrome (the studio desk),
+  warm paper for reading, pitch green for navigation/content
+  accents, and a single flare red reserved for anything genuinely
+  "live" or urgent — so it never competes with the green.
+*/
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--navy: #10192b;
+	--navy-light: #1c2942;
+	--paper: #f6f5f1;
+	--ink: #14171c;
+	--slate: #6b7280;
+	--line: #e6e3d8;
+	--pitch: #1e7245;
+	--pitch-dark: #14532d;
+	--flare: #d6432f;
+
+	--font-display: 'Oswald', var(--font-atkinson), 'Arial Narrow', sans-serif;
+	--font-body: var(--font-atkinson), 'Segoe UI', sans-serif;
+
+	--gray-dark: 20, 23, 28;
+	--box-shadow: 0 1px 2px rgba(16, 25, 43, 0.06);
 }
+
+* {
+	box-sizing: border-box;
+}
+
 body {
-	font-family: var(--font-atkinson);
+	font-family: var(--font-body);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
+	background: var(--paper);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+	color: var(--ink);
+	font-size: 18px;
+	line-height: 1.6;
 }
+
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
 }
+
 h1,
 h2,
 h3,
@@ -42,39 +57,44 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
+	color: var(--navy);
+	line-height: 1.15;
+	font-family: var(--font-display);
+	font-weight: 600;
+	letter-spacing: 0.01em;
 }
+
 h1 {
-	font-size: 3.052em;
+	font-size: 2.75rem;
+	font-weight: 700;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 2rem;
 }
 h3 {
-	font-size: 1.953em;
+	font-size: 1.5rem;
 }
 h4 {
-	font-size: 1.563em;
+	font-size: 1.25rem;
 }
 h5 {
-	font-size: 1.25em;
+	font-size: 1.05rem;
 }
 strong,
 b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--pitch);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--pitch-dark);
 }
 p {
 	margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+	margin-bottom: 1.4em;
 }
 textarea {
 	width: 100%;
@@ -89,11 +109,11 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	border-radius: 6px;
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: #eceadf;
 	border-radius: 2px;
 }
 pre {
@@ -104,42 +124,47 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--pitch);
 	padding: 0 0 0 20px;
 	margin: 0;
-	font-size: 1.333em;
+	font-size: 1.2em;
+	color: var(--navy);
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--line);
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 17px;
 	}
 	main {
 		padding: 1em;
 	}
+	h1 {
+		font-size: 2.1rem;
+	}
 }
 
-/* Shared wide layout + sidebar, used by index/blog/tag listing pages */
+/* Live indicator — the one recurring "urgent" cue, used sparingly */
 .live-dot {
 	display: inline-block;
 	width: 0.5rem;
 	height: 0.5rem;
 	border-radius: 999px;
-	background: #16a34a;
-	margin-right: 0.4rem;
-	box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5);
+	background: var(--flare);
+	margin-right: 0.45rem;
+	box-shadow: 0 0 0 0 rgba(214, 67, 47, 0.5);
 	animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-	0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
-	70% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
-	100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+	0% { box-shadow: 0 0 0 0 rgba(214, 67, 47, 0.45); }
+	70% { box-shadow: 0 0 0 8px rgba(214, 67, 47, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(214, 67, 47, 0); }
 }
 
+/* Shared wide layout + sidebar, used by index/blog/tag listing pages */
 .main-wide {
 	width: 1160px;
 }
@@ -168,7 +193,7 @@ hr {
 	flex-direction: column;
 	gap: 1.5rem;
 	position: sticky;
-	top: 84px;
+	top: 92px;
 }
 
 @media (max-width: 960px) {
@@ -179,19 +204,20 @@ hr {
 
 .widget {
 	background: #ffffff;
-	border: 1px solid #eceef1;
-	border-radius: 14px;
-	padding: 1.25rem 1.35rem 1.4rem;
-	box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 1.3rem 1.4rem 1.5rem;
 }
 
 .widget h3 {
-	margin: 0 0 1rem;
-	font-size: 0.95rem;
-	font-weight: 800;
-	color: #111827;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
+	margin: 0 0 1.1rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--navy);
+	font-family: var(--font-display);
+	letter-spacing: 0.02em;
+	padding-bottom: 0.75rem;
+	border-bottom: 2px solid var(--navy);
 }
 
 .tag-cloud {
@@ -201,19 +227,19 @@ hr {
 }
 
 .tag-cloud a {
-	font-size: 0.82rem;
+	font-size: 0.8rem;
 	font-weight: 600;
-	color: #374151;
-	background: #f3f4f6;
-	border-radius: 999px;
-	padding: 0.35rem 0.8rem;
+	color: var(--pitch-dark);
+	background: rgba(30, 114, 69, 0.09);
+	border-radius: 3px;
+	padding: 0.35rem 0.7rem;
 	text-decoration: none;
 	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .tag-cloud a:hover,
 .tag-cloud a.active {
-	background: #16a34a;
+	background: var(--pitch);
 	color: #ffffff;
 }
 
@@ -226,8 +252,8 @@ hr {
 }
 
 .headline-list li {
-	padding: 0.85rem 0;
-	border-bottom: 1px solid #f1f2f4;
+	padding: 0.9rem 0;
+	border-bottom: 1px solid var(--line);
 }
 
 .headline-list li:first-child {
@@ -241,43 +267,52 @@ hr {
 
 .headline-list a {
 	text-decoration: none;
-	color: #111827;
-	font-size: 0.92rem;
-	font-weight: 700;
+	color: var(--navy);
+	font-size: 0.95rem;
+	font-weight: 600;
 	line-height: 1.4;
 	display: block;
 }
 
 .headline-list a:hover {
-	color: #16a34a;
+	color: var(--pitch);
 }
 
 .headline-list time {
 	display: block;
-	margin-top: 0.3rem;
-	font-size: 0.75rem;
+	margin-top: 0.35rem;
+	font-size: 0.72rem;
 	font-weight: 600;
-	color: #9ca3af;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
+	color: var(--slate);
+	letter-spacing: 0.02em;
+}
+
+.live-widget {
+	background: var(--navy);
+	border-color: var(--navy);
 }
 
 .live-widget p {
-	margin: 0 0 1rem;
-	font-size: 0.88rem;
+	margin: 0 0 1.1rem;
+	font-size: 0.9rem;
 	line-height: 1.6;
-	color: #4b5563;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.live-widget h3 {
+	color: #ffffff;
+	border-bottom-color: rgba(255, 255, 255, 0.2);
 }
 
 .live-widget .live-badge {
 	display: inline-flex;
 	align-items: center;
-	font-size: 0.78rem;
-	font-weight: 700;
-	color: #16a34a;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
-	margin-bottom: 0.75rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #ffffff;
+	margin-bottom: 0.9rem;
+	font-family: var(--font-display);
+	letter-spacing: 0.02em;
 }
 
 .follow-links {
@@ -291,17 +326,16 @@ hr {
 	justify-content: center;
 	width: 34px;
 	height: 34px;
-	border-radius: 9999px;
-	background: #f3f4f6;
-	color: #4b5563;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.08);
+	color: rgba(255, 255, 255, 0.8);
 	text-decoration: none;
-	transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+	transition: color 0.2s ease, background 0.2s ease;
 }
 
 .follow-links a:hover {
-	color: #fff;
-	background: linear-gradient(135deg, #7c3aed, #2563eb);
-	transform: translateY(-2px);
+	color: #ffffff;
+	background: var(--flare);
 }
 
 .sr-only {

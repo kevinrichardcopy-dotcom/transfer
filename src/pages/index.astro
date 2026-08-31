@@ -22,74 +22,74 @@ const moreHeadlines = allPosts.slice(7, 13);
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       .hero {
-        padding: 3rem 0 2rem;
-        text-align: center;
+        padding: 2.75rem 0 2rem;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 2rem;
+      }
+
+      .hero .kicker {
+        display: flex;
+        align-items: center;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--flare);
+        margin-bottom: 0.6rem;
       }
 
       .hero h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        margin: 0 0 0.6rem;
-        color: #111827;
-        letter-spacing: -0.02em;
+        font-size: clamp(2.1rem, 4vw, 3rem);
+        margin: 0 0 0.5rem;
+        max-width: 20ch;
       }
 
       .hero p {
-        font-size: 1.1rem;
-        color: #6b7280;
+        font-size: 1.05rem;
+        color: var(--slate);
         max-width: 42rem;
-        margin: 0 auto;
+        margin: 0;
       }
 
       .section-heading {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        margin: 2.5rem 0 1.25rem;
+        margin: 0 0 1.4rem;
       }
 
       .section-heading h2 {
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: #111827;
+        font-size: 1.3rem;
         margin: 0;
       }
 
       .section-heading a {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         font-weight: 600;
-        color: #16a34a;
+        color: var(--pitch);
         text-decoration: none;
       }
 
       .section-heading a:hover {
-        text-decoration: underline;
+        color: var(--pitch-dark);
       }
 
       .featured-wrap {
-        margin-bottom: 1rem;
+        margin-bottom: 2.5rem;
       }
 
-      .grid {
+      .story-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem 2rem;
       }
 
       .empty-state {
         text-align: center;
         padding: 3rem 1rem;
-        color: #6b7280;
+        color: var(--slate);
       }
 
-      @media (max-width: 900px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 640px) {
-        .grid {
+      @media (max-width: 700px) {
+        .story-list {
           grid-template-columns: 1fr;
         }
       }
@@ -99,9 +99,7 @@ const moreHeadlines = allPosts.slice(7, 13);
     <Header />
     <main class="main-wide">
       <section class="hero">
-        <p style="font-size: 0.85rem; font-weight: 600; color: #16a34a; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem;">
-          <span class="live-dot"></span>Live transfer coverage
-        </p>
+        <p class="kicker"><span class="live-dot"></span>Live transfer coverage</p>
         <h1>{SITE_TITLE}</h1>
         <p>{SITE_DESCRIPTION}</p>
       </section>
@@ -126,9 +124,9 @@ const moreHeadlines = allPosts.slice(7, 13);
             <section>
               <div class="section-heading">
                 <h2>Latest news</h2>
-                <a href="/blog/1/">View all →</a>
+                <a href="/blog">View all →</a>
               </div>
-              <div class="grid">
+              <div class="story-list">
                 {recent.map((post) => (
                   <PostCard
                     id={post.id}

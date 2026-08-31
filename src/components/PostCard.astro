@@ -16,137 +16,211 @@ interface Props {
 const { id, title, description, pubDate, heroImage, tags = [], featured = false } = Astro.props;
 ---
 
-<div class={`card ${featured ? 'featured' : ''}`}>
-  <a href={`/blog/${id}/`} class="card-link">
-    {heroImage && (
-      <div class="image-wrap">
-        <Image width={featured ? 900 : 500} height={featured ? 420 : 280} src={heroImage} alt="" />
+{featured ? (
+  <article class="feature">
+    <a href={`/blog/${id}/`} class="feature-link">
+      {heroImage && (
+        <div class="feature-image">
+          <Image width={1100} height={520} src={heroImage} alt="" />
+        </div>
+      )}
+      <div class="feature-copy">
+        <p class="date"><FormattedDate date={pubDate} /></p>
+        <h2 class="title">{title}</h2>
+        <p class="description">{description}</p>
+      </div>
+    </a>
+    {tags.length > 0 && (
+      <div class="tags">
+        {tags.map((tag) => (
+          <a href={`/tag/${slugifyTag(tag)}/`} class="tag-pill">{tag}</a>
+        ))}
       </div>
     )}
-    <div class="content">
-      <p class="date">
-        <FormattedDate date={pubDate} />
-      </p>
-      <h3 class="title">{title}</h3>
-      <p class="description">{description}</p>
-      <span class="read-more">Read more →</span>
-    </div>
-  </a>
-  {tags.length > 0 && (
-    <div class="tags">
-      {tags.map((tag) => (
-        <a href={`/tag/${slugifyTag(tag)}/`} class="tag-pill">{tag}</a>
-      ))}
-    </div>
-  )}
-</div>
+  </article>
+) : (
+  <article class="row">
+    <a href={`/blog/${id}/`} class="row-link">
+      {heroImage && (
+        <div class="row-image">
+          <Image width={340} height={220} src={heroImage} alt="" />
+        </div>
+      )}
+      <div class="row-copy">
+        <p class="date"><FormattedDate date={pubDate} /></p>
+        <h3 class="title">{title}</h3>
+        <p class="description">{description}</p>
+      </div>
+    </a>
+    {tags.length > 0 && (
+      <div class="tags">
+        {tags.map((tag) => (
+          <a href={`/tag/${slugifyTag(tag)}/`} class="tag-pill">{tag}</a>
+        ))}
+      </div>
+    )}
+  </article>
+)}
 
 <style>
-  .card {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid #eceef1;
-    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-    height: 100%;
-  }
-
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 24px rgba(16, 24, 40, 0.1);
-  }
-
-  .card-link {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    flex: 1;
-  }
-
-  .image-wrap {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: #f2f3f5;
-  }
-
-  .image-wrap :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .content {
-    padding: 1.1rem 1.25rem 0.9rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
   .date {
     margin: 0 0 0.4rem;
     font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    color: #16a34a;
-  }
-
-  .title {
-    margin: 0 0 0.5rem;
-    font-size: 1.15rem;
-    line-height: 1.35;
-    font-weight: 700;
-    color: #111827;
-  }
-
-  .featured .title {
-    font-size: 1.6rem;
-  }
-
-  .description {
-    margin: 0 0 0.75rem;
-    font-size: 0.92rem;
-    line-height: 1.5;
-    color: #4b5563;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .read-more {
-    margin-top: auto;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #16a34a;
+    letter-spacing: 0.02em;
+    color: var(--pitch);
   }
 
   .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    padding: 0 1.25rem 1.1rem;
+    margin-top: 0.75rem;
   }
 
   .tag-pill {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    color: #374151;
-    background: #f3f4f6;
-    border-radius: 999px;
-    padding: 0.25rem 0.7rem;
+    color: var(--pitch-dark);
+    background: rgba(30, 114, 69, 0.09);
+    border-radius: 3px;
+    padding: 0.25rem 0.6rem;
     text-decoration: none;
     transition: background 0.15s ease, color 0.15s ease;
   }
 
   .tag-pill:hover {
-    background: #16a34a;
+    background: var(--pitch);
     color: #ffffff;
+  }
+
+  /* Featured story — full-bleed photo with copy overlaid, the one
+     signature card treatment on the page. Everything else reads
+     as a quieter editorial list beneath it. */
+  .feature {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-link {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .feature-image {
+    aspect-ratio: 21 / 10;
+    background: var(--navy);
+  }
+
+  .feature-image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+  }
+
+  .feature-copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 3rem 1.75rem 1.5rem;
+    background: linear-gradient(0deg, rgba(16, 25, 43, 0.94) 0%, rgba(16, 25, 43, 0.55) 60%, transparent 100%);
+  }
+
+  .feature-copy .date {
+    color: #f2b8ab;
+  }
+
+  .feature .title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: #ffffff;
+    max-width: 34rem;
+  }
+
+  .feature .description {
+    margin: 0;
+    max-width: 34rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .feature .tags {
+    margin-top: 1rem;
+  }
+
+  /* Regular list row — flat, hairline-divided, no card chrome */
+  .row {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row-link {
+    display: flex;
+    gap: 1.1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .row-image {
+    flex-shrink: 0;
+    width: 128px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--line);
+  }
+
+  .row-image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+  }
+
+  .row-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .row .title {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    color: var(--navy);
+    transition: color 0.15s ease;
+  }
+
+  .row-link:hover .title {
+    color: var(--pitch);
+  }
+
+  .row .description {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--slate);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 480px) {
+    .row-image {
+      width: 96px;
+    }
   }
 </style>

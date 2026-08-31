@@ -29,20 +29,18 @@ const sidebarHeadlines = allPosts.filter((post) => post.id !== id).slice(0, 6);
 			.hero-image img {
 				display: block;
 				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				border-radius: 4px;
 			}
 			.prose {
 				width: 720px;
 				max-width: 100%;
 				margin: auto;
-				padding: 1em 1em 0;
-				color: rgb(var(--gray-dark));
+				padding: 1.5em 1em 0;
+				color: var(--ink);
 			}
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
-				text-align: center;
 				line-height: 1;
 			}
 			.title h1 {
@@ -50,10 +48,13 @@ const sidebarHeadlines = allPosts.filter((post) => post.id !== id).slice(0, 6);
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--pitch);
 			}
 			.last-updated-on {
 				font-style: italic;
+				color: var(--slate);
 			}
 		</style>
 	</head>
