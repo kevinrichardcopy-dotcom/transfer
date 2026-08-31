@@ -47,7 +47,10 @@ const latest = (await getCollection('blog'))
 		position: sticky;
 		top: 0;
 		z-index: 50;
-		background: var(--navy);
+		background: rgba(12, 14, 19, 0.85);
+		backdrop-filter: blur(14px) saturate(160%);
+		-webkit-backdrop-filter: blur(14px) saturate(160%);
+		border-bottom: 1px solid var(--line);
 	}
 
 	nav {
@@ -57,7 +60,7 @@ const latest = (await getCollection('blog'))
 		flex-wrap: wrap;
 		max-width: 1160px;
 		margin: 0 auto;
-		height: 60px;
+		height: 64px;
 		padding: 0 1.5em;
 	}
 
@@ -66,18 +69,21 @@ const latest = (await getCollection('blog'))
 		align-items: center;
 		text-decoration: none;
 		font-family: var(--font-display);
-		font-size: 1.2rem;
-		font-weight: 600;
-		letter-spacing: 0.01em;
-		color: #ffffff;
+		font-size: 1.55rem;
+		letter-spacing: 0.02em;
+		background: linear-gradient(100deg, #ffffff 35%, var(--teal) 90%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
 	}
 
 	.brand-mark {
 		width: 9px;
 		height: 9px;
 		border-radius: 999px;
-		background: var(--flare);
-		margin-right: 0.55em;
+		background: var(--signal);
+		margin-right: 0.6em;
+		box-shadow: 0 0 10px rgba(255, 77, 46, 0.7);
 	}
 
 	.internal-links {
@@ -89,19 +95,18 @@ const latest = (await getCollection('blog'))
 		position: relative;
 		padding: 0.5em 0.9em;
 		font-size: 0.95rem;
-		font-weight: 500;
-		color: rgba(255, 255, 255, 0.65);
+		font-weight: 600;
+		color: var(--muted);
 		text-decoration: none;
 		transition: color 0.2s ease;
 	}
 
 	.internal-links :global(a:hover) {
-		color: #ffffff;
+		color: var(--ink);
 	}
 
 	.internal-links :global(a.active) {
-		color: #ffffff;
-		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.internal-links :global(a.active)::after {
@@ -111,14 +116,14 @@ const latest = (await getCollection('blog'))
 		right: 0.9em;
 		bottom: 0.3em;
 		height: 2px;
-		background: var(--flare);
+		background: var(--teal);
 	}
 
 	.ticker {
 		display: flex;
 		align-items: stretch;
-		background: var(--navy-light);
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		background: var(--surface);
+		border-top: 1px solid var(--line);
 		overflow: hidden;
 	}
 
@@ -126,13 +131,12 @@ const latest = (await getCollection('blog'))
 		flex-shrink: 0;
 		display: flex;
 		align-items: center;
-		padding: 0.55em 1em;
+		padding: 0.5em 1.1em;
 		font-family: var(--font-display);
-		font-size: 0.78rem;
-		font-weight: 600;
-		letter-spacing: 0.03em;
-		color: #ffffff;
-		background: rgba(214, 67, 47, 0.16);
+		font-size: 0.95rem;
+		letter-spacing: 0.04em;
+		color: var(--signal);
+		background: var(--signal-soft);
 	}
 
 	.ticker-track {
@@ -152,17 +156,17 @@ const latest = (await getCollection('blog'))
 
 	.ticker-content a {
 		white-space: nowrap;
-		padding: 0.55em 2em 0.55em 0;
+		padding: 0.5em 2em 0.5em 0;
 		font-size: 0.85rem;
 		font-weight: 500;
-		color: rgba(255, 255, 255, 0.8);
+		color: var(--muted);
 		text-decoration: none;
-		border-right: 1px solid rgba(255, 255, 255, 0.14);
+		border-right: 1px solid var(--line);
 		margin-right: 2em;
 	}
 
 	.ticker-content a:hover {
-		color: #ffffff;
+		color: var(--ink);
 	}
 
 	@keyframes scroll-ticker {

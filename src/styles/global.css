@@ -1,29 +1,28 @@
 /*
-  Design system for Transfer Updates.
-
-  Palette is drawn from live football broadcast graphics rather
-  than generic SaaS defaults: deep navy chrome (the studio desk),
-  warm paper for reading, pitch green for navigation/content
-  accents, and a single flare red reserved for anything genuinely
-  "live" or urgent — so it never competes with the green.
+  Design system for Transfer Updates — modern sports-app dark
+  theme (think FotMob / Sofascore / the ESPN app at night), not a
+  broadsheet. Two live accents — signal orange and match teal —
+  do the work color-coding tags vs. urgency, on a near-black base
+  with warm undertone rather than flat #000.
 */
 
 :root {
-	--navy: #10192b;
-	--navy-light: #1c2942;
-	--paper: #f6f5f1;
-	--ink: #14171c;
-	--slate: #6b7280;
-	--line: #e6e3d8;
-	--pitch: #1e7245;
-	--pitch-dark: #14532d;
-	--flare: #d6432f;
+	--bg: #0c0e13;
+	--surface: #16191f;
+	--surface-raised: #1d2027;
+	--line: rgba(255, 255, 255, 0.08);
+	--ink: #eef0f2;
+	--muted: #9aa1ac;
+	--signal: #ff4d2e;
+	--signal-soft: rgba(255, 77, 46, 0.14);
+	--teal: #00d6a4;
+	--teal-soft: rgba(0, 214, 164, 0.12);
+	--teal-dark: #00a37c;
 
-	--font-display: 'Oswald', var(--font-atkinson), 'Arial Narrow', sans-serif;
-	--font-body: var(--font-atkinson), 'Segoe UI', sans-serif;
+	--font-display: 'Bebas Neue', var(--font-atkinson), 'Arial Narrow', sans-serif;
+	--font-body: 'Manrope', var(--font-atkinson), 'Segoe UI', sans-serif;
 
-	--gray-dark: 20, 23, 28;
-	--box-shadow: 0 1px 2px rgba(16, 25, 43, 0.06);
+	--gray-dark: 238, 240, 242;
 }
 
 * {
@@ -35,12 +34,12 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: var(--paper);
+	background: var(--bg);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: var(--ink);
-	font-size: 18px;
-	line-height: 1.6;
+	font-size: 17px;
+	line-height: 1.65;
 }
 
 main {
@@ -57,41 +56,43 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: var(--navy);
-	line-height: 1.15;
+	color: var(--ink);
+	line-height: 1.05;
 	font-family: var(--font-display);
-	font-weight: 600;
+	font-weight: 400;
 	letter-spacing: 0.01em;
 }
 
 h1 {
-	font-size: 2.75rem;
-	font-weight: 700;
+	font-size: 3.2rem;
 }
 h2 {
-	font-size: 2rem;
+	font-size: 2.2rem;
 }
 h3 {
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 }
 h4 {
-	font-size: 1.25rem;
+	font-size: 1.3rem;
 }
 h5 {
-	font-size: 1.05rem;
+	font-size: 1.1rem;
 }
 strong,
 b {
 	font-weight: 700;
 }
 a {
-	color: var(--pitch);
+	color: var(--teal);
 }
 a:hover {
-	color: var(--pitch-dark);
+	color: #fff;
 }
 p {
 	margin-bottom: 1em;
+}
+.prose {
+	color: #d7dade;
 }
 .prose p {
 	margin-bottom: 1.4em;
@@ -109,26 +110,28 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 6px;
+	border-radius: 8px;
 }
 code {
-	padding: 2px 5px;
-	background-color: #eceadf;
-	border-radius: 2px;
+	padding: 2px 6px;
+	background-color: var(--surface-raised);
+	color: var(--teal);
+	border-radius: 4px;
 }
 pre {
 	padding: 1.5em;
-	border-radius: 8px;
+	border-radius: 10px;
+	background: var(--surface);
 }
 pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--pitch);
-	padding: 0 0 0 20px;
+	border-left: 3px solid var(--signal);
+	padding: 0.2em 0 0.2em 20px;
 	margin: 0;
-	font-size: 1.2em;
-	color: var(--navy);
+	font-size: 1.15em;
+	color: var(--ink);
 }
 hr {
 	border: none;
@@ -136,32 +139,32 @@ hr {
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 17px;
+		font-size: 16px;
 	}
 	main {
 		padding: 1em;
 	}
 	h1 {
-		font-size: 2.1rem;
+		font-size: 2.4rem;
 	}
 }
 
-/* Live indicator — the one recurring "urgent" cue, used sparingly */
+/* Live indicator — signal orange, the one urgency cue */
 .live-dot {
 	display: inline-block;
 	width: 0.5rem;
 	height: 0.5rem;
 	border-radius: 999px;
-	background: var(--flare);
-	margin-right: 0.45rem;
-	box-shadow: 0 0 0 0 rgba(214, 67, 47, 0.5);
+	background: var(--signal);
+	margin-right: 0.5rem;
+	box-shadow: 0 0 0 0 rgba(255, 77, 46, 0.55);
 	animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-	0% { box-shadow: 0 0 0 0 rgba(214, 67, 47, 0.45); }
-	70% { box-shadow: 0 0 0 8px rgba(214, 67, 47, 0); }
-	100% { box-shadow: 0 0 0 0 rgba(214, 67, 47, 0); }
+	0% { box-shadow: 0 0 0 0 rgba(255, 77, 46, 0.5); }
+	70% { box-shadow: 0 0 0 9px rgba(255, 77, 46, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(255, 77, 46, 0); }
 }
 
 /* Shared wide layout + sidebar, used by index/blog/tag listing pages */
@@ -191,7 +194,7 @@ hr {
 .sidebar {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 1.25rem;
 	position: sticky;
 	top: 92px;
 }
@@ -203,21 +206,19 @@ hr {
 }
 
 .widget {
-	background: #ffffff;
+	background: var(--surface);
 	border: 1px solid var(--line);
-	border-radius: 4px;
+	border-radius: 12px;
 	padding: 1.3rem 1.4rem 1.5rem;
 }
 
 .widget h3 {
 	margin: 0 0 1.1rem;
-	font-size: 1rem;
-	font-weight: 600;
-	color: var(--navy);
+	font-size: 1.3rem;
+	font-weight: 400;
+	color: var(--ink);
 	font-family: var(--font-display);
 	letter-spacing: 0.02em;
-	padding-bottom: 0.75rem;
-	border-bottom: 2px solid var(--navy);
 }
 
 .tag-cloud {
@@ -227,20 +228,20 @@ hr {
 }
 
 .tag-cloud a {
-	font-size: 0.8rem;
-	font-weight: 600;
-	color: var(--pitch-dark);
-	background: rgba(30, 114, 69, 0.09);
-	border-radius: 3px;
-	padding: 0.35rem 0.7rem;
+	font-size: 0.78rem;
+	font-weight: 700;
+	color: var(--teal);
+	background: var(--teal-soft);
+	border-radius: 999px;
+	padding: 0.35rem 0.75rem;
 	text-decoration: none;
 	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .tag-cloud a:hover,
 .tag-cloud a.active {
-	background: var(--pitch);
-	color: #ffffff;
+	background: var(--teal);
+	color: #06110d;
 }
 
 .headline-list {
@@ -267,7 +268,7 @@ hr {
 
 .headline-list a {
 	text-decoration: none;
-	color: var(--navy);
+	color: var(--ink);
 	font-size: 0.95rem;
 	font-weight: 600;
 	line-height: 1.4;
@@ -275,7 +276,7 @@ hr {
 }
 
 .headline-list a:hover {
-	color: var(--pitch);
+	color: var(--teal);
 }
 
 .headline-list time {
@@ -283,34 +284,29 @@ hr {
 	margin-top: 0.35rem;
 	font-size: 0.72rem;
 	font-weight: 600;
-	color: var(--slate);
+	color: var(--muted);
 	letter-spacing: 0.02em;
 }
 
 .live-widget {
-	background: var(--navy);
-	border-color: var(--navy);
+	background: linear-gradient(155deg, var(--surface-raised), var(--surface));
+	border-color: rgba(255, 77, 46, 0.25);
 }
 
 .live-widget p {
 	margin: 0 0 1.1rem;
 	font-size: 0.9rem;
 	line-height: 1.6;
-	color: rgba(255, 255, 255, 0.75);
-}
-
-.live-widget h3 {
-	color: #ffffff;
-	border-bottom-color: rgba(255, 255, 255, 0.2);
+	color: var(--muted);
 }
 
 .live-widget .live-badge {
 	display: inline-flex;
 	align-items: center;
-	font-size: 0.8rem;
-	font-weight: 600;
-	color: #ffffff;
-	margin-bottom: 0.9rem;
+	font-size: 1.15rem;
+	font-weight: 400;
+	color: var(--ink);
+	margin-bottom: 0.75rem;
 	font-family: var(--font-display);
 	letter-spacing: 0.02em;
 }
@@ -327,15 +323,15 @@ hr {
 	width: 34px;
 	height: 34px;
 	border-radius: 999px;
-	background: rgba(255, 255, 255, 0.08);
-	color: rgba(255, 255, 255, 0.8);
+	background: rgba(255, 255, 255, 0.06);
+	color: var(--muted);
 	text-decoration: none;
 	transition: color 0.2s ease, background 0.2s ease;
 }
 
 .follow-links a:hover {
-	color: #ffffff;
-	background: var(--flare);
+	color: #06110d;
+	background: var(--teal);
 }
 
 .sr-only {
@@ -346,12 +342,8 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }

@@ -14,6 +14,10 @@ const allPosts = (await getCollection('blog')).sort(
 const featured = allPosts[0];
 const recent = allPosts.slice(1, 7);
 const moreHeadlines = allPosts.slice(7, 13);
+
+// Real numbers, not placeholder stats — how many stories are
+// actually in the collection and how many clubs they cover.
+const clubCount = new Set(allPosts.flatMap((post) => post.data.tags ?? [])).size;
 ---
 
 <!doctype html>
@@ -22,31 +26,56 @@ const moreHeadlines = allPosts.slice(7, 13);
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       .hero {
-        padding: 2.75rem 0 2rem;
-        border-bottom: 1px solid var(--line);
-        margin-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2rem;
+        align-items: end;
+        padding: 3rem 0 2.5rem;
       }
 
       .hero .kicker {
         display: flex;
         align-items: center;
         font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--flare);
-        margin-bottom: 0.6rem;
+        font-weight: 700;
+        color: var(--signal);
+        margin-bottom: 0.75rem;
       }
 
       .hero h1 {
-        font-size: clamp(2.1rem, 4vw, 3rem);
+        font-size: clamp(2.6rem, 6vw, 4.4rem);
         margin: 0 0 0.5rem;
-        max-width: 20ch;
+        max-width: 16ch;
       }
 
       .hero p {
         font-size: 1.05rem;
-        color: var(--slate);
-        max-width: 42rem;
+        color: var(--muted);
+        max-width: 38rem;
         margin: 0;
+      }
+
+      .stat {
+        text-align: right;
+        padding-bottom: 0.5rem;
+      }
+
+      .stat .num {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 6vw, 4.6rem);
+        line-height: 1;
+        background: linear-gradient(120deg, var(--teal), var(--signal));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .stat .label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--muted);
+        margin-top: 0.35rem;
       }
 
       .section-heading {
@@ -57,39 +86,54 @@ const moreHeadlines = allPosts.slice(7, 13);
       }
 
       .section-heading h2 {
-        font-size: 1.3rem;
+        font-size: 1.9rem;
         margin: 0;
       }
 
       .section-heading a {
         font-size: 0.88rem;
-        font-weight: 600;
-        color: var(--pitch);
+        font-weight: 700;
+        color: var(--teal);
         text-decoration: none;
       }
 
       .section-heading a:hover {
-        color: var(--pitch-dark);
+        color: #fff;
       }
 
       .featured-wrap {
-        margin-bottom: 2.5rem;
+        margin-bottom: 3rem;
       }
 
-      .story-list {
+      .story-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.75rem 2rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
       }
 
       .empty-state {
         text-align: center;
         padding: 3rem 1rem;
-        color: var(--slate);
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .story-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       @media (max-width: 700px) {
-        .story-list {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .stat {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .story-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -99,9 +143,17 @@ const moreHeadlines = allPosts.slice(7, 13);
     <Header />
     <main class="main-wide">
       <section class="hero">
-        <p class="kicker"><span class="live-dot"></span>Live transfer coverage</p>
-        <h1>{SITE_TITLE}</h1>
-        <p>{SITE_DESCRIPTION}</p>
+        <div>
+          <p class="kicker"><span class="live-dot"></span>Live transfer coverage</p>
+          <h1>{SITE_TITLE}</h1>
+          <p>{SITE_DESCRIPTION}</p>
+        </div>
+        {allPosts.length > 0 && (
+          <div class="stat">
+            <span class="num">{allPosts.length}</span>
+            <span class="label">deals tracked · {clubCount} clubs</span>
+          </div>
+        )}
       </section>
 
       <div class="page-layout">
@@ -126,7 +178,7 @@ const moreHeadlines = allPosts.slice(7, 13);
                 <h2>Latest news</h2>
                 <a href="/blog">View all →</a>
               </div>
-              <div class="story-list">
+              <div class="story-grid">
                 {recent.map((post) => (
                   <PostCard
                     id={post.id}

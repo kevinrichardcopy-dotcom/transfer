@@ -82,18 +82,18 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
         display: inline-block;
         font-size: 0.9rem;
         font-weight: 600;
-        color: var(--pitch);
+        color: var(--teal);
         text-decoration: none;
       }
 
       .back-link:hover {
-        color: var(--pitch-dark);
+        color: #fff;
       }
 
-      .story-list {
+      .story-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.75rem 2rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
         margin-bottom: 2.5rem;
       }
 
@@ -115,26 +115,33 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
       }
 
       .pagination a {
-        background: var(--navy);
-        color: #ffffff;
+        background: var(--surface-raised);
+        color: var(--ink);
       }
 
       .pagination a:hover {
-        background: var(--pitch);
+        background: var(--teal);
+        color: #06110d;
       }
 
       .pagination .disabled {
-        background: #ece9e0;
-        color: #a8a496;
+        background: var(--surface);
+        color: var(--muted);
       }
 
       .pagination .page-info {
-        color: var(--slate);
+        color: var(--muted);
         font-weight: 500;
       }
 
-      @media (max-width: 700px) {
-        .story-list {
+      @media (max-width: 900px) {
+        .story-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .story-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -150,7 +157,7 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
 
       <div class="page-layout">
         <div class="main-col">
-          <div class="story-list">
+          <div class="story-grid">
             {page.data.map((post) => (
               <PostCard
                 id={post.id}

@@ -45,7 +45,8 @@ const today = new Date();
 <style>
 	footer {
 		padding: 2.75em 1.5em;
-		background: var(--navy);
+		background: var(--surface);
+		border-top: 1px solid var(--line);
 	}
 
 	.footer-inner {
@@ -63,23 +64,23 @@ const today = new Date();
 		align-items: center;
 		text-decoration: none;
 		font-family: var(--font-display);
-		font-size: 1.05rem;
-		font-weight: 600;
-		color: #ffffff;
+		font-size: 1.3rem;
+		letter-spacing: 0.02em;
+		color: var(--ink);
 	}
 
 	.brand-mark {
 		width: 8px;
 		height: 8px;
 		border-radius: 999px;
-		background: var(--flare);
+		background: var(--signal);
 		margin-right: 0.5em;
 	}
 
 	footer p {
 		margin: 0;
 		font-size: 0.85rem;
-		color: rgba(255, 255, 255, 0.5);
+		color: var(--muted);
 	}
 
 	.social-links {
@@ -94,15 +95,15 @@ const today = new Date();
 		width: 32px;
 		height: 32px;
 		border-radius: 999px;
-		color: rgba(255, 255, 255, 0.7);
-		background: rgba(255, 255, 255, 0.08);
+		color: var(--muted);
+		background: rgba(255, 255, 255, 0.06);
 		text-decoration: none;
 		transition: color 0.2s ease, background 0.2s ease;
 	}
 
 	.social-links a:hover {
-		color: #fff;
-		background: var(--flare);
+		color: #06110d;
+		background: var(--teal);
 	}
 
 	@media (max-width: 560px) {
