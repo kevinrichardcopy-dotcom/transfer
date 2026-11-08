@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import FormattedDate from './FormattedDate.astro';
 import { slugifyTag } from '../utils/slugifyTag';
+import { pickFallback } from '../utils/fallbackImage';
 
 interface Props {
   id: string;
@@ -13,14 +14,17 @@ interface Props {
   featured?: boolean;
 }
 
-const { id, title, description, pubDate, heroImage, tags = [], featured = false } = Astro.props;
+const { id, title, description, pubDate, heroImage: postImage, tags = [], featured = false } = Astro.props;
+const fallback = postImage ? null : pickFallback(id);
+const heroImage = postImage ?? fallback!.src;
+const contain = fallback?.contain ?? false;
 ---
 
 {featured ? (
   <article class="feature">
     <a href={`/blog/${id}/`} class="feature-link">
       {heroImage && (
-        <div class="feature-image">
+        <div class:list={['feature-image', { contain }]}>
           <Image width={1100} height={520} src={heroImage} alt="" />
         </div>
       )}
@@ -42,7 +46,7 @@ const { id, title, description, pubDate, heroImage, tags = [], featured = false 
   <article class="card">
     <a href={`/blog/${id}/`} class="card-link">
       {heroImage && (
-        <div class="card-image">
+        <div class:list={['card-image', { contain }]}>
           <Image width={520} height={340} src={heroImage} alt="" />
         </div>
       )}
@@ -113,6 +117,17 @@ const { id, title, description, pubDate, heroImage, tags = [], featured = false 
   .feature-image {
     aspect-ratio: 20 / 9;
     background: var(--surface);
+  }
+
+  .feature-image.contain,
+  .card-image.contain {
+    background: radial-gradient(90% 90% at 50% 40%, #ffffff 0%, #dff0e9 100%);
+  }
+
+  .feature-image.contain :global(img),
+  .card-image.contain :global(img) {
+    object-fit: contain;
+    padding: 0.6rem;
   }
 
   .feature-image :global(img) {

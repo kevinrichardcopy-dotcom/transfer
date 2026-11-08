@@ -5,6 +5,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import Sidebar from '../components/Sidebar.astro';
+import { Image } from 'astro:assets';
+import heroArt from '../assets/hero-footballer.png';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 const allPosts = (await getCollection('blog')).sort(
@@ -26,14 +28,41 @@ const clubCount = new Set(allPosts.flatMap((post) => post.data.tags ?? [])).size
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       .hero {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 2rem;
-        align-items: end;
+        position: relative;
+        overflow: hidden;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
         padding: 3rem 2.5rem;
         margin-bottom: 2.5rem;
         border-radius: 28px;
         background: radial-gradient(120% 140% at 100% 0%, #1f4a50 0%, var(--ink-bg) 55%);
+      }
+
+      .hero-art {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 68%;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 28%);
+      }
+
+      .hero-art :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: right bottom;
+        border-radius: 0;
+        display: block;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        max-width: 34rem;
       }
 
       .hero .kicker {
@@ -60,8 +89,8 @@ const clubCount = new Set(allPosts.flatMap((post) => post.data.tags ?? [])).size
       }
 
       .stat {
-        text-align: right;
-        padding-bottom: 0.5rem;
+        text-align: left;
+        margin-top: 1.5rem;
       }
 
       .stat .num {
@@ -129,10 +158,14 @@ const clubCount = new Set(allPosts.flatMap((post) => post.data.tags ?? [])).size
 
       @media (max-width: 700px) {
         .hero {
-          grid-template-columns: 1fr;
+          min-height: 360px;
+          padding: 2rem 1.5rem;
         }
-        .stat {
-          text-align: left;
+        .hero-art {
+          width: 100%;
+          opacity: 0.4;
+          -webkit-mask-image: none;
+          mask-image: none;
         }
       }
 
@@ -147,17 +180,20 @@ const clubCount = new Set(allPosts.flatMap((post) => post.data.tags ?? [])).size
     <Header />
     <main class="main-wide">
       <section class="hero">
-        <div>
+        <div class="hero-art" aria-hidden="true">
+          <Image src={heroArt} alt="" width={1100} format="webp" quality={82} loading="eager" />
+        </div>
+        <div class="hero-copy">
           <p class="kicker"><span class="live-dot"></span>Live transfer coverage</p>
           <h1>{SITE_TITLE}</h1>
           <p>{SITE_DESCRIPTION}</p>
+          {allPosts.length > 0 && (
+            <div class="stat">
+              <span class="num">{allPosts.length}</span>
+              <span class="label">deals tracked · {clubCount} clubs</span>
+            </div>
+          )}
         </div>
-        {allPosts.length > 0 && (
-          <div class="stat">
-            <span class="num">{allPosts.length}</span>
-            <span class="label">deals tracked · {clubCount} clubs</span>
-          </div>
-        )}
       </section>
 
       <div class="page-layout">

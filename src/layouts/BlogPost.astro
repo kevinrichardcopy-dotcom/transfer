@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
+import { pickFallback } from '../utils/fallbackImage';
 
 type Props = CollectionEntry<'blog'>['data'] & { id?: string };
 
@@ -16,6 +17,7 @@ const { title, description, pubDate, updatedDate, heroImage, id } = Astro.props;
 const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const fallback = heroImage ? null : pickFallback(id);
 const sidebarHeadlines = allPosts.filter((post) => post.id !== id).slice(0, 6);
 ---
 
@@ -25,11 +27,25 @@ const sidebarHeadlines = allPosts.filter((post) => post.id !== id).slice(0, 6);
 		<style>
 			.hero-image {
 				width: 100%;
+				overflow: hidden;
+				border-radius: 24px;
+				aspect-ratio: 2 / 1;
+				/* dark teal backdrop so transparent hero art (sky, cut-outs) blends in */
+				background: radial-gradient(120% 140% at 100% 0%, #1f4a50 0%, var(--ink-bg) 60%);
+			}
+			.hero-image.contain {
+				background: radial-gradient(90% 90% at 50% 40%, #ffffff 0%, #dff0e9 100%);
 			}
 			.hero-image img {
 				display: block;
-				margin: 0 auto;
-				border-radius: 20px;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 0;
+			}
+			.hero-image.contain img {
+				object-fit: contain;
+				padding: 1rem;
 			}
 			.prose {
 				width: 720px;
@@ -64,8 +80,8 @@ const sidebarHeadlines = allPosts.filter((post) => post.id !== id).slice(0, 6);
 		<main class="main-wide">
 			<div class="page-layout">
 				<article>
-					<div class="hero-image">
-						{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					<div class:list={['hero-image', { contain: fallback?.contain }]}>
+						<Image width={1020} src={heroImage ?? fallback!.src} alt="" />
 					</div>
 					<div class="prose">
 						<div class="title">

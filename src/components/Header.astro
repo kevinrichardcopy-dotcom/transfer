@@ -11,6 +11,18 @@ const latest = (await getCollection('blog'))
 ---
 
 <header>
+	<nav>
+		<a href="/" class="brand">
+			<span class="brand-mark" aria-hidden="true"></span>
+			{SITE_TITLE}
+		</a>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+		</div>
+	</nav>
+
 	{latest.length > 0 && (
 		<div class="ticker">
 			<span class="ticker-tag"><span class="live-dot"></span>Live</span>
@@ -28,17 +40,6 @@ const latest = (await getCollection('blog'))
 			</div>
 		</div>
 	)}
-	<nav>
-		<a href="/" class="brand">
-			<span class="brand-mark" aria-hidden="true"></span>
-			{SITE_TITLE}
-		</a>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-	</nav>
 
 </header>
 
@@ -144,7 +145,7 @@ const latest = (await getCollection('blog'))
 		display: flex;
 		align-items: center;
 		flex-shrink: 0;
-		animation: scroll-ticker 38s linear infinite;
+		animation: scroll-ticker 760s linear infinite;
 	}
 
 	.ticker-content a {
