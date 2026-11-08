@@ -11,18 +11,6 @@ const latest = (await getCollection('blog'))
 ---
 
 <header>
-	<nav>
-		<a href="/" class="brand">
-			<span class="brand-mark" aria-hidden="true"></span>
-			{SITE_TITLE}
-		</a>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-	</nav>
-
 	{latest.length > 0 && (
 		<div class="ticker">
 			<span class="ticker-tag"><span class="live-dot"></span>Live</span>
@@ -40,6 +28,18 @@ const latest = (await getCollection('blog'))
 			</div>
 		</div>
 	)}
+	<nav>
+		<a href="/" class="brand">
+			<span class="brand-mark" aria-hidden="true"></span>
+			{SITE_TITLE}
+		</a>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+		</div>
+	</nav>
+
 </header>
 
 <style>
@@ -47,7 +47,7 @@ const latest = (await getCollection('blog'))
 		position: sticky;
 		top: 0;
 		z-index: 50;
-		background: rgba(12, 14, 19, 0.85);
+		background: rgba(255, 255, 255, 0.92);
 		backdrop-filter: blur(14px) saturate(160%);
 		-webkit-backdrop-filter: blur(14px) saturate(160%);
 		border-bottom: 1px solid var(--line);
@@ -69,21 +69,18 @@ const latest = (await getCollection('blog'))
 		align-items: center;
 		text-decoration: none;
 		font-family: var(--font-display);
-		font-size: 1.55rem;
-		letter-spacing: 0.02em;
-		background: linear-gradient(100deg, #ffffff 35%, var(--teal) 90%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
+		font-size: 1.25rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--ink);
 	}
 
 	.brand-mark {
-		width: 9px;
-		height: 9px;
-		border-radius: 999px;
-		background: var(--signal);
+		width: 28px;
+		height: 28px;
+		border-radius: 9px;
+		background: linear-gradient(135deg, var(--teal), var(--ink-bg));
 		margin-right: 0.6em;
-		box-shadow: 0 0 10px rgba(255, 77, 46, 0.7);
 	}
 
 	.internal-links {
@@ -94,36 +91,30 @@ const latest = (await getCollection('blog'))
 	.internal-links :global(a) {
 		position: relative;
 		padding: 0.5em 0.9em;
-		font-size: 0.95rem;
+		font-size: 0.92rem;
 		font-weight: 600;
 		color: var(--muted);
 		text-decoration: none;
-		transition: color 0.2s ease;
+		border-radius: 999px;
+		transition: color 0.2s ease, background 0.2s ease;
 	}
 
 	.internal-links :global(a:hover) {
 		color: var(--ink);
+		background: var(--surface-raised);
 	}
 
 	.internal-links :global(a.active) {
-		color: var(--ink);
-	}
-
-	.internal-links :global(a.active)::after {
-		content: '';
-		position: absolute;
-		left: 0.9em;
-		right: 0.9em;
-		bottom: 0.3em;
-		height: 2px;
-		background: var(--teal);
+		color: var(--teal-dark);
+		background: var(--teal-soft);
+		text-decoration: none;
+		font-weight: 700;
 	}
 
 	.ticker {
 		display: flex;
 		align-items: stretch;
-		background: var(--surface);
-		border-top: 1px solid var(--line);
+		background: var(--ink-bg);
 		overflow: hidden;
 	}
 
@@ -133,10 +124,12 @@ const latest = (await getCollection('blog'))
 		align-items: center;
 		padding: 0.5em 1.1em;
 		font-family: var(--font-display);
-		font-size: 0.95rem;
-		letter-spacing: 0.04em;
-		color: var(--signal);
-		background: var(--signal-soft);
+		font-size: 0.78rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #fff;
+		background: var(--teal-dark);
 	}
 
 	.ticker-track {
@@ -159,14 +152,14 @@ const latest = (await getCollection('blog'))
 		padding: 0.5em 2em 0.5em 0;
 		font-size: 0.85rem;
 		font-weight: 500;
-		color: var(--muted);
+		color: var(--on-dark-muted);
 		text-decoration: none;
-		border-right: 1px solid var(--line);
+		border-right: 1px solid rgba(255, 255, 255, 0.12);
 		margin-right: 2em;
 	}
 
 	.ticker-content a:hover {
-		color: var(--ink);
+		color: #fff;
 	}
 
 	@keyframes scroll-ticker {

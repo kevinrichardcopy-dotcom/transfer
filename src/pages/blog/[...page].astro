@@ -71,20 +71,22 @@ const sidebarHeadlines = allPosts.filter((post) => !shownIds.has(post.id)).slice
       .pagination a,
       .pagination span {
         padding: 0.55rem 1.1rem;
-        border-radius: 3px;
+        border-radius: 999px;
         font-size: 0.9rem;
         font-weight: 600;
         text-decoration: none;
       }
 
       .pagination a {
-        background: var(--surface-raised);
+        background: var(--surface);
         color: var(--ink);
+        border: 1px solid var(--line);
       }
 
       .pagination a:hover {
         background: var(--teal);
-        color: #06110d;
+        color: #fff;
+        border-color: var(--teal);
       }
 
       .pagination .disabled {

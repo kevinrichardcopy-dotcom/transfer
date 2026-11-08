@@ -45,8 +45,9 @@ const today = new Date();
 <style>
 	footer {
 		padding: 2.75em 1.5em;
-		background: var(--surface);
-		border-top: 1px solid var(--line);
+		background: var(--ink-bg);
+		color: var(--on-dark);
+		margin-top: 2rem;
 	}
 
 	.footer-inner {
@@ -64,23 +65,24 @@ const today = new Date();
 		align-items: center;
 		text-decoration: none;
 		font-family: var(--font-display);
-		font-size: 1.3rem;
-		letter-spacing: 0.02em;
-		color: var(--ink);
+		font-size: 1.2rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: #fff;
 	}
 
 	.brand-mark {
-		width: 8px;
-		height: 8px;
-		border-radius: 999px;
-		background: var(--signal);
-		margin-right: 0.5em;
+		width: 24px;
+		height: 24px;
+		border-radius: 8px;
+		background: linear-gradient(135deg, var(--teal), var(--ink-bg-soft));
+		margin-right: 0.55em;
 	}
 
 	footer p {
 		margin: 0;
 		font-size: 0.85rem;
-		color: var(--muted);
+		color: var(--on-dark-muted);
 	}
 
 	.social-links {
@@ -95,14 +97,14 @@ const today = new Date();
 		width: 32px;
 		height: 32px;
 		border-radius: 999px;
-		color: var(--muted);
-		background: rgba(255, 255, 255, 0.06);
+		color: var(--on-dark);
+		background: rgba(255, 255, 255, 0.1);
 		text-decoration: none;
 		transition: color 0.2s ease, background 0.2s ease;
 	}
 
 	.social-links a:hover {
-		color: #06110d;
+		color: #fff;
 		background: var(--teal);
 	}
 
