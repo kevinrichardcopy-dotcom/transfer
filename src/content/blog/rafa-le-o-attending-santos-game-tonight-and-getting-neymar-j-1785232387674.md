@@ -17,5 +17,3 @@ AC Milan, meanwhile, are consistently striving to build a competitive squad capa
 
 
 It is anticipated that upon his return to Italy, Leão will hold discussions with AC Milan officials regarding his future at the club.  The outcome of these talks could potentially determine whether he stays in Milan or seeks a new challenge elsewhere. Fans and pundits alike will be eagerly awaiting updates on this developing story as the transfer window progresses.
-
-Source: [https://x.com/FabrizioRomano/status/2081181846579134614](https://x.com/FabrizioRomano/status/2081181846579134614)

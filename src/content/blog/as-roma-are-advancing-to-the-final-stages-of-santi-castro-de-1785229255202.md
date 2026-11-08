@@ -19,5 +19,3 @@ AS Roma have been particularly active in bolstering their midfield this season, 
 ## What's Next
 
 With Castro reportedly already agreeing to join Roma, the next steps will likely involve finalizing the financial details between the two clubs and completing a medical examination for Castro.  Once these hurdles are cleared, an official announcement from AS Roma confirming the transfer should be imminent.
-
-Source: [https://x.com/FabrizioRomano/status/2081186511928639734](https://x.com/FabrizioRomano/status/2081186511928639734)

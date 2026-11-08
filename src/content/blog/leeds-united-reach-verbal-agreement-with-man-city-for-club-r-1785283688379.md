@@ -16,5 +16,3 @@ Leeds United are known for their proactive transfer strategy, particularly when 
 ## What's Next 
 
 The next step in this transfer saga is likely to involve Trafford undergoing a medical examination at Leeds United. If all goes well, an official announcement confirming the move should follow shortly after. The expectation is that Trafford will be integrated into the Leeds first team squad immediately and could even feature in pre-season friendlies before the start of the new Premier League campaign.
-
-Source: [https://x.com/FabrizioRomano/status/2081821196258083178](https://x.com/FabrizioRomano/status/2081821196258083178)

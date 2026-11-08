@@ -20,5 +20,3 @@ Chicharito's arrival brings a wealth of experience and proven goalscoring abilit
 ## What's next
 
 With the deal agreed, all eyes now turn to Chicharito completing his medical examinations.  Formal announcements from both the player and Atlético Dallas are expected soon, confirming the move and outlining the terms of his contract. This will kick off a new era for both parties, with the focus shifting towards preseason preparations and building a successful team for their inaugural season in 2027.
-
-Source: [https://x.com/FabrizioRomano/status/2081780318130905169](https://x.com/FabrizioRomano/status/2081780318130905169)

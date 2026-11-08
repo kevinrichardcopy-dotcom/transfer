@@ -14,5 +14,3 @@ Vozinha is a well-traveled goalkeeper with experience across several leagues in 
 ## What's next 
 
 With the paperwork completed, it seems like only a matter of time before Vozinha is officially unveiled as a Colo Colo player. The medical examination will likely be a formality, paving the way for an official announcement and hopefully, a swift integration into the squad.
-
-Source: [https://x.com/FabrizioRomano/status/2081187825832051117](https://x.com/FabrizioRomano/status/2081187825832051117)

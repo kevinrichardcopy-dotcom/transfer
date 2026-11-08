@@ -16,5 +16,3 @@ Como are looking to bolster their defensive options ahead of the upcoming season
 ## What's Next
 
 It remains to be seen whether Como will ultimately secure a deal for Lucumí. Further negotiations are likely to take place between both clubs, as well as with the player himself. If an agreement is reached, there would typically be a medical examination conducted before the transfer is formally announced. Juventus' continued interest adds another layer of complexity to the situation, and they could potentially make a move themselves should Como prove unsuccessful in their pursuit.
-
-Source: [https://x.com/FabrizioRomano/status/2081778761922437590](https://x.com/FabrizioRomano/status/2081778761922437590)

@@ -16,5 +16,3 @@ AC Milan has consistently sought to bolster their squad with young, talented pla
 ## What's Next
 
 If Diawara passes his medical examination successfully, the official announcement of the transfer is expected shortly thereafter. It wouldn't be unusual for Milan to confirm the signing through their official channels and social media platforms, generating excitement among their dedicated fanbase.
-
-Source: [https://x.com/FabrizioRomano/status/2081757640770613624](https://x.com/FabrizioRomano/status/2081757640770613624)

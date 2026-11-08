@@ -14,5 +14,3 @@ Stones enjoyed a successful spell at Manchester City, winning numerous trophies 
 ## What's next 
 
 The final details of the transfer are expected to be ironed out shortly, with both parties seemingly optimistic about completing the deal.  Once the agreement is fully formalized, Stones will likely undergo a medical examination before the official announcement is made public.
-
-Source: [https://x.com/FabrizioRomano/status/2081821421236355401](https://x.com/FabrizioRomano/status/2081821421236355401)

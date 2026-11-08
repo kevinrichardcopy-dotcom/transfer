@@ -16,5 +16,3 @@ Borussia Dortmund have built a reputation for identifying and developing young p
 ## What's Next
 
 With all club-to-club negotiations complete, the focus now shifts to Karetsas finalizing his agreement and undergoing a medical examination. Once these formalities are completed, Borussia Dortmund will likely announce the transfer officially through their official channels. Fans eagerly await the confirmation of this exciting acquisition, which promises to inject new talent and dynamism into the Dortmund squad.
-
-Source: [https://x.com/FabrizioRomano/status/2081795928759894274](https://x.com/FabrizioRomano/status/2081795928759894274)

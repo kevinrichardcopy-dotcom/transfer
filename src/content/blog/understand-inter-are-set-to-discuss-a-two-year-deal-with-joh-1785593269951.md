@@ -14,5 +14,3 @@ John Stones is an experienced center-back known for his composure on the ball an
 ## What's next
 
 It seems likely that Stones will undergo medical examinations with any club he seriously considers before committing to a deal. An official announcement is expected once the player reaches a final decision and agrees terms with his chosen destination.
-
-Source: [https://x.com/FabrizioRomano/status/2081746810977013889](https://x.com/FabrizioRomano/status/2081746810977013889)

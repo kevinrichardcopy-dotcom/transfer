@@ -17,5 +17,3 @@ Newcastle have demonstrated a keen eye for talent in their pursuit of bolstering
 ## What's Next
 
 With the agreement officially announced, Newcastle will likely proceed with formalities such as medical checks before making a formal statement about the new deal's duration. Fans can expect an official announcement on the club's social media channels and website in due course.
-
-Source: [https://x.com/FabrizioRomano/status/2081773090011271406](https://x.com/FabrizioRomano/status/2081773090011271406)

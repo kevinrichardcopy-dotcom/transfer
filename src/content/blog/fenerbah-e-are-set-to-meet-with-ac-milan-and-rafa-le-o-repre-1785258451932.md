@@ -20,5 +20,3 @@ AC Milan, after a period of rebuilding, are now firmly back among Serie A's elit
 With Fenerbahçe set to formally table their offer, the coming days will likely see a flurry of activity as negotiations between the two clubs and Leão himself intensify. If Milan are indeed open to selling,  it remains to be seen what kind of fee they would demand for one of their prized assets. 
 
 We can expect more news to emerge soon regarding the progress of these talks. Should an agreement be reached, a medical examination for Leão will likely follow, paving the way for an official announcement and his potential transfer to Fenerbahçe.
-
-Source: [https://x.com/FabrizioRomano/status/2081826215309000947](https://x.com/FabrizioRomano/status/2081826215309000947)

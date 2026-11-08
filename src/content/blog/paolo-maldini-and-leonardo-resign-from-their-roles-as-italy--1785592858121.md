@@ -16,5 +16,3 @@ Gravina has previously emphasized a desire for stability and experienced leaders
 ## What's next
 
 Given the sudden nature of Maldini and Leonardo's resignation, it is likely that the Italian Football Federation will be forced to swiftly begin the process of finding replacements. This could involve internal appointments or searching for new candidates with a proven track record in managing football teams at high levels. The focus will now shift towards resolving the leadership crisis and establishing a clear vision for the national team moving forward.  It remains to be seen how this situation will impact Italy's upcoming international commitments.
-
-Source: [https://x.com/FabrizioRomano/status/2081789426389119006](https://x.com/FabrizioRomano/status/2081789426389119006)

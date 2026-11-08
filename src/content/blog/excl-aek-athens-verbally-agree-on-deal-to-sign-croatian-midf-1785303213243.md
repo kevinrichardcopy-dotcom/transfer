@@ -17,5 +17,3 @@ AEK Athens are a prominent Greek side with a history of competing in European co
 ## What's Next
 
 With the verbal agreement reportedly in place, the next steps for Majer will involve completing his medical examinations and signing the official contract with AEK Athens. Following this, an official announcement is expected from both clubs, confirming the transfer and outlining the terms of the deal.  It's likely that Majer will then be integrated into the AEK Athens squad ahead of their upcoming fixtures.
-
-Source: [https://x.com/FabrizioRomano/status/2081819864302326239](https://x.com/FabrizioRomano/status/2081819864302326239)

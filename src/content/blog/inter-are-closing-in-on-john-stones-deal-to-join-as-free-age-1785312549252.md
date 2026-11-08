@@ -14,5 +14,3 @@ John Stones is a highly regarded centre-back known for his composure on the ball
 ## What's next 
 
 With an agreement in principle already in place, the next steps will likely involve Stones undergoing a medical examination and finalizing the contractual details before an official announcement is made.  Football fans eagerly await confirmation of this potentially impactful transfer, which could significantly bolster Inter's defensive strength for the upcoming season.
-
-Source: [https://x.com/FabrizioRomano/status/2081805350634749964](https://x.com/FabrizioRomano/status/2081805350634749964)

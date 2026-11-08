@@ -19,5 +19,3 @@ Chelsea, under their current ownership, have demonstrated an ambition to attract
 
 With personal terms reportedly settled, the focus will likely shift to finalizing the transfer agreements between the clubs involved. It wouldn't be surprising to see a swift resolution given the apparent willingness of both Henderson and Welbeck to join Chelsea. 
 Once these details are confirmed, we can expect an official announcement from Chelsea, followed by medical examinations for the new signings.
-
-Source: [https://x.com/FabrizioRomano/status/2081851759106957358](https://x.com/FabrizioRomano/status/2081851759106957358)

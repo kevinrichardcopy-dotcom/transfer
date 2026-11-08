@@ -16,5 +16,3 @@ AS Roma are known for their proactive approach in the transfer market, often loo
 ## What's next
 
 With Castro already in Rome, the next steps are likely to involve him completing a medical examination and putting pen to paper on a contract with Roma. Once those formalities are taken care of, an official announcement from the club is expected to follow shortly after. The transfer fee of over €35 million highlights the significant investment Roma are making in Castro's potential.
-
-Source: [https://x.com/FabrizioRomano/status/2081861300917870751](https://x.com/FabrizioRomano/status/2081861300917870751)

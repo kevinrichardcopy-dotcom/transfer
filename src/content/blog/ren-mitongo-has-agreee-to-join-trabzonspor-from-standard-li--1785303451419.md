@@ -16,5 +16,3 @@ Trabzonspor's transfer approach often involves scouting talented youngsters from
 ## What's next? 
 
 With the contract terms agreed and Mitongo scheduled for medical examinations in Turkey, the official announcement of his transfer to Trabzonspor is likely imminent. Once he passes his medical, all parties involved can expect to release a formal statement confirming the move and outlining the details of the agreement.
-
-Source: [https://x.com/FabrizioRomano/status/2081819230085763524](https://x.com/FabrizioRomano/status/2081819230085763524)

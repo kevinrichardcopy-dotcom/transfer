@@ -16,5 +16,3 @@ Torino, under their current management, have often sought out young talent with 
 ## What's next
 
 It is likely that Comuzzo will undergo a medical examination before officially joining Torino.  A formal announcement from the club is expected shortly after these formalities are completed. The buy option clause in the deal suggests that Torino see real potential in the young defender and may well be inclined to make his move permanent if he impresses during his loan spell.
-
-Source: [https://x.com/FabrizioRomano/status/2081800334301614541](https://x.com/FabrizioRomano/status/2081800334301614541)

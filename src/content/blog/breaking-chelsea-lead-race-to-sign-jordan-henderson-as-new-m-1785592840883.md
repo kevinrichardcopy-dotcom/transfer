@@ -16,5 +16,3 @@ While Chelsea have undergone significant changes in recent seasons, they are ren
 ## What's next 
 
 It remains to be seen whether Chelsea can secure Henderson's signature definitively, as other clubs are also interested. The Blues will likely aim to finalize the deal quickly to avoid any complications or rival bids emerging.  A medical examination would be the next step if an agreement is reached, followed by an official announcement from both parties involved.
-
-Source: [https://x.com/FabrizioRomano/status/2081791727149670899](https://x.com/FabrizioRomano/status/2081791727149670899)

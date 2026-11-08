@@ -21,5 +21,3 @@ Nantes, meanwhile, have built a strong track record of developing talented playe
 ## What's Next 
 
 With the deal agreed, Monaco and Nantes will now work towards finalizing the transfer.  The next steps typically involve a medical examination for Abline followed by the official announcement of his move to Monaco. Once these formalities are completed, Abline is expected to join his new teammates ahead of the upcoming season.
-
-Source: [https://x.com/FabrizioRomano/status/2081786605300334968](https://x.com/FabrizioRomano/status/2081786605300334968)

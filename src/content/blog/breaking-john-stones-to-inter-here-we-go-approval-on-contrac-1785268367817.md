@@ -17,5 +17,3 @@ Inter Milan are a club with a history of ambitious transfers, often looking to b
 ## What's Next
 
 With contract terms agreed upon and a medical scheduled, the final stages of Stones’ transfer to Inter appear imminent. It is likely that an official announcement will be made shortly after his successful medical examination in Milan.
-
-Source: [https://x.com/FabrizioRomano/status/2081824159454126177](https://x.com/FabrizioRomano/status/2081824159454126177)
